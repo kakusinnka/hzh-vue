@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-bg">
+    <h1>{{ msg }}</h1>
+    <button @click="showStudent">点我控制台输出组件实例</button>
+    <Student ref="student" name="张三"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Student from './components/Student.vue'
+import { mixin } from './mixin'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data() {
+        return {
+            msg: 'Hello Vue!'
+        }
+    },
+    components: {
+        Student
+    },
+    methods: {
+        showStudent() {
+            console.dir(this.$refs.student)
+            this.hello();
+        }
+    },
+    mixins: [mixin]
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    .app-bg {
+        background-color: #42b983;
+        color: #fff;
+    }
 </style>
