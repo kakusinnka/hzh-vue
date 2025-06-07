@@ -1,32 +1,40 @@
 <template>
   <div class="app-bg">
     <h1>{{ msg }}</h1>
-    <button @click="showStudent">点我控制台输出组件实例</button>
-    <Student ref="student" name="张三" />
+    <h1>子组件给我的学生姓名：{{ stuname }}</h1>
+    <h1>子组件给我的学校姓名：{{ schname }}</h1>
+    <Student :sentStudenName="getStudenName"></Student>
+    <Schoole @sentSchoolName="getSchoolName"></Schoole>
   </div>
 </template>
 
 <script>
 import Student from "./components/Student.vue";
-import { mixin } from "./mixin";
+import Schoole from "./components/Schoole.vue";
 
 export default {
   name: "App",
   data() {
     return {
       msg: "Hello Vue!",
+      stuname: "",
+      schname: "",
     };
   },
   components: {
     Student,
+    Schoole,
   },
   methods: {
-    showStudent() {
-      console.dir(this.$refs.student);
-      this.hello();
+    getStudenName(sname) {
+      console.log("@@@我拿到了子组件给我的学生姓名：", sname);
+      this.stuname = sname;
+    },
+    getSchoolName(sname) {
+      console.log("@@@我拿到了子组件给我的学校名字：", sname);
+      this.schname = sname;
     },
   },
-  mixins: [mixin],
 };
 </script>
 
