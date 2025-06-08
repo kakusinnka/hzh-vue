@@ -11,6 +11,7 @@
 <script>
 import Student from "./components/Student.vue";
 import Schoole from "./components/Schoole.vue";
+import PubSub from "pubsub-js";
 
 export default {
   name: "App",
@@ -34,6 +35,14 @@ export default {
       console.log("@@@我拿到了子组件给我的学校名字：", sname);
       this.schname = sname;
     },
+  },
+  mounted() {
+    // 订阅消息
+    PubSub.subscribe("subSchoolName", (msg, sname) => {
+      console.log("@@@我订阅的消息名字：", msg);
+      console.log("@@@我订阅到了子组件给我的学校名字：", sname);
+      this.schname = sname;
+    });
   },
 };
 </script>
