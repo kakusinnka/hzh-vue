@@ -1,5 +1,6 @@
 <template>
   <div class="app-bg">
+    <Test></Test>
     <h1>{{ msg }}</h1>
     <h1>子组件给我的学生姓名：{{ stuname }}</h1>
     <h1>子组件给我的学校姓名：{{ schname }}</h1>
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+import Test from "./components/Test.vue";
 import Student from "./components/Student.vue";
 import Schoole from "./components/Schoole.vue";
 import PubSub from "pubsub-js";
@@ -22,10 +24,7 @@ export default {
       schname: "",
     };
   },
-  components: {
-    Student,
-    Schoole,
-  },
+  components: { Test, Student, Schoole },
   methods: {
     getStudenName(sname) {
       console.log("@@@我拿到了子组件给我的学生姓名：", sname);
