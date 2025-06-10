@@ -23,6 +23,8 @@ export default {
     },
     getSomeData() {
       try {
+        // 资源存在，不会向服务器索要数据，而是使用public下的资源
+        // axios.get("http://localhost:8080/todos/1").then(
         axios.get("http://localhost:8080/todos/2").then(
           (response) => {
             console.log("请求成功了！！！", response.data);
